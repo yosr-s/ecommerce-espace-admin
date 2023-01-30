@@ -10,8 +10,10 @@ const AddProduct = () => {
   const [files, setFile] = useState({});
   const [Categories, setCategories] = useState();
   const [cat, setCat] = useState({});
-  {/*const [Subcategories, setSubcategories] = useState();
-const [sub,setSub]=useState({});*/}
+  const [Subcategories, setSubcategories] = useState([]);
+const [sub,setSub]=useState({});
+const [Providers, setProviders] = useState([]);
+const [Prov,setProv]=useState({});
  
 
 
@@ -31,41 +33,60 @@ const [sub,setSub]=useState({});*/}
     
     setCat({[e.target.name]: {_id:e.target.value},});
   };
- {/* const onChangeHandlerSub = (e) => {
+  const onChangeHandlerSub = (e) => {
 
 
     console.log({[e.target.name]: e.target.value,})
     
     setSub({[e.target.name]: {_id:e.target.value},});
-  };*/}
+  };
+  const onChangeHandlerProv = (e) => {
+
+
+    console.log({[e.target.name]: e.target.value,})
+    
+    setProv({[e.target.name]: {_id:e.target.value},});
+  };
   const getAll = () => {
     CategoryService.getAll()
       .then((res) => {
         console.log(res.data);
         setCategories(res.data);
+        console.log(Categories)
       })
       .catch((err) => {
         console.log(err);
       });
   };
- {/* const getAllSub = () => {
+  const getAllSub = () => {
     SubCategoryService.getAll()
       .then((res) => {
-        console.log(res.data);
-        setSubcategories(res.data);
+        console.log(res.data.data);
+        setSubcategories(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  };*/}
+  };
+  const getAllProv = () => {
+    ProviderService.getAll()
+      .then((res) => {
+        console.log(res.data.data);
+        setProviders(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
     getAll();
-   {/* getAllSub();*/}
+    getAllSub();
+    getAllProv();
   }, []);
  
 
   const handleFileChange = (event) => {
-    setFile(event.target.files);
+    setFile(event.target.files[0]);
   };
 
  
@@ -77,17 +98,19 @@ const [sub,setSub]=useState({});*/}
 
     console.log(files);
     const formData = new FormData();
-    for(let i=0;i<files.length;i++){
+   {/* for(let i=0;i<files.length;i++){
       formData.append(`files-${i}`, files[i]);
-    }
+    }*/}
    {/* files.forEach((files, i) => {
       FormData.append(`files-${i}`, files);
     });*/}
-
+    formData.append('files',files)
     Data.category = cat.category;
     formData.append("category", Data.category);
-   {/* Data.subcategory = sub.subcategory;
-  formData.append("subcategory", Data.subcategory);*/}
+    Data.subcategory = sub.subcategory;
+  formData.append("subcategory", Data.subcategory);
+  Data.provider=Prov.provider;
+  formData.append("provider",Data.provider)
 
 
     formData.append("ref", Data.ref);
@@ -171,7 +194,7 @@ const [sub,setSub]=useState({});*/}
                       </select>
                     </div>
                   </div>
-                {/*  <div className="mb-3 row">
+                  <div className="mb-3 row">
                     <label className="col-md-3 col-xs-12 control-label">
                       Subcategory
                     </label>
@@ -182,7 +205,19 @@ const [sub,setSub]=useState({});*/}
                         })}
                       </select>
                     </div>
-                      </div> */}
+                  </div> 
+                  <div className="mb-3 row">
+                    <label className="col-md-3 col-xs-12 control-label">
+                      Provider
+                    </label>
+                    <div className="col-md-6 col-xs-12">
+                      <select name="provider" onChange={onChangeHandlerProv} >
+                        {Providers?.map((item) => {
+                          return <option  value={item._id}> {item.company}</option>;
+                        })}
+                      </select>
+                    </div>
+                      </div> 
                  
                   <div className="mb-3 row">
                     <label className="col-sm-3 col-form-label">Photo</label>

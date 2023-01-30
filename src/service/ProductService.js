@@ -9,9 +9,9 @@ import http from "./axiosContext";
 const create = (data) => {
     return http.post("/products/", data)
     }
-const getAll = () => {
-    return http.get("/products/",/*config*/)
-    }
+    const getAll = () => {
+        return http.get("/products/")
+        }
 const update = (id, data) => {
     return http.put(`/products/${id}`, data)
     }

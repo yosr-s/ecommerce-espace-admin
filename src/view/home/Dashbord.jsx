@@ -1,6 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import CategoryService from '../../service/CategoryService';
+import ProductService from '../../service/ProductService';
 
 const Dashbord = () => {
+  const [Categories, setCategories] = useState();
+  const [Subcategories, setSubcategories] = useState();
+  const [Products, setProducts] = useState();
+
+
+
+  const getAll=()=>{
+    CategoryService.getAll()
+    .then((res)=>{
+        console.log(res.data)
+        setCategories(res.data)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+};
+const getAllProd=()=>{
+  ProductService.getAll()
+  .then((res)=>{
+      console.log(res)
+      setProducts(res.data.data)
+  })
+  .catch((err)=>{
+      console.log(err)
+  })
+};
+const getAllSub=()=>{
+  CategoryService.getAll()
+  .then((res)=>{
+      console.log(res.data)
+      setSubcategories(res.data)
+  })
+  .catch((err)=>{
+      console.log(err)
+  })
+};
+useEffect(()=>{
+  getAll();
+  getAllSub();
+  getAllProd();
+  
+ 
+},[]);
+
   return (
     <>
    <div className="content-body">
@@ -157,11 +203,11 @@ const Dashbord = () => {
               </svg>		
             </div>
             <div>
-              <h4 className="fs-15 font-w600 mb-0">Invoice<br />Completed</h4>
+              <h4 className="fs-15 font-w600 mb-0">Total<br />Categories</h4>
             </div>
           </div>	
           <div className="chart-num">
-            <h2 className="font-w600 mb-0 fs-28 counter_up" data-number={3932} data-speed={10000}>3.932</h2>
+            <h2 className="font-w600 mb-0 fs-28 counter_up" data-number={3932} data-speed={10000}>{Categories?.length}</h2>
           </div>
         </div>	
       </div>
@@ -192,11 +238,11 @@ const Dashbord = () => {
               </svg>
             </div>
             <div>
-              <h4 className="fs-15 font-w600 mb-0">Invoice<br /> Sent</h4>
+              <h4 className="fs-15 font-w600 mb-0">Total<br /> Subcategories</h4>
             </div>
           </div>	
           <div className="chart-num">
-            <h2 className="font-w600 mb-0 fs-28 counter_up" data-number={1932} data-speed={10000}>1.932</h2>
+            <h2 className="font-w600 mb-0 fs-28 counter_up" data-number={1932} data-speed={10000}>{Subcategories?.length}</h2>
           </div>
         </div>	
       </div>
@@ -227,11 +273,11 @@ const Dashbord = () => {
               </svg>
             </div>
             <div>
-              <h4 className="fs-15 font-w600 mb-0">Invoice<br />Unpaid</h4>
+              <h4 className="fs-15 font-w600 mb-0">Total<br />Products</h4>
             </div>
           </div>	
           <div className="chart-num">
-            <h2 className="font-w600 mb-0 fs-28 counter_up" data-number={2932} data-speed={10000}>2.932</h2>
+            <h2 className="font-w600 mb-0 fs-28 counter_up" data-number={2932} data-speed={10000}>{Products?.length}</h2>
           </div>
         </div>	
       </div>

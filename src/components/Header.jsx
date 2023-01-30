@@ -759,7 +759,7 @@ const Header = () => {
                     <div className="header-info2 d-flex align-items-center">
                       <div className="d-flex align-items-center sidebar-info">
                         <div>
-                          <h4 className="mb-0">Nella Vita</h4>
+                          <h4 className="mb-0">{localStorage.getItem('user')}</h4>
                           <span className="d-block text-end">Admin</span>
                         </div>
                       </div>

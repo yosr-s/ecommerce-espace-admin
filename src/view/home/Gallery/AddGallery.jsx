@@ -7,7 +7,7 @@ const AddGallery = () => {
   const [Data, setData] = useState({});
   const [file, setFile] = useState({});
   const navigate = useNavigate();
-  const [Products, setProducts] = useState();
+  const [Products, setProducts] = useState([]);
   const [prod, setProd] = useState({});
 
   const onChangeHandlerProd = (e) => {
@@ -21,8 +21,9 @@ const AddGallery = () => {
   const getAll = () => {
     ProductService.getAll()
       .then((res) => {
-        console.log(res.data);
-        setProducts(res.data);
+        console.log(res.data.data);
+        setProducts(res.data.data);
+        console.log(Products)
       })
       .catch((err) => {
         console.log(err);
@@ -41,12 +42,14 @@ const AddGallery = () => {
     e.preventDefault();
 
     console.log(file)
+    Data.product = prod.product;
+
     const formData=new FormData();
 
-    formData.append('file',file);
    
-    Data.product = prod.product;
+   
     formData.append('product',Data.product);
+    formData.append('file',file);
 
     GalleryService.create(formData)
       .then((res) => {
@@ -85,18 +88,18 @@ const AddGallery = () => {
                       />
                     </div>
                   </div>
-                 {/* <div className="mb-3 row">
+                  <div className="mb-3 row">
                     <label className="col-md-3 col-xs-12 control-label">
                       Product
                     </label>
                     <div className="col-md-6 col-xs-12">
                       <select name="product" onChange={onChangeHandlerProd} >
-                        {Products?.map((item) => {
-                          return <option  value={item._id}> {item.name}</option>;
+                        {Products?.map((item)=>{
+                          return <option  value={item._id}>{item.ref}</option>
                         })}
                       </select>
                     </div>
-                      </div>*/}
+                      </div>
                  
 
                   <div className="mb-3 row">
