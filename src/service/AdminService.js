@@ -1,7 +1,7 @@
 import http from "./axiosContext";
 
 const create = (data) => {
-  return http.post("/admins/", data);
+  return http.post("/admins/", data )
 };
 const getAll = () => {
 

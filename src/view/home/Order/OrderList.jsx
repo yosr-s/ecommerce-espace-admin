@@ -47,7 +47,7 @@ const onDelete = (id) => {
     <div className="col-lg-10">
   <div className="card">
     <div className="card-header">
-      <h4 className="card-title">Delivery list</h4>
+      <h4 className="card-title">Orders list</h4>
     </div>
     <div className="card-body">
       <div className="table-responsive">

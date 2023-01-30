@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CategoryService from '../../../service/CategoryService';
 const AddCategory = () => {
   const[Data, setData] = useState({});
+
   const navigate = useNavigate()
   const onChangeHandler = (e) => {
     setData({

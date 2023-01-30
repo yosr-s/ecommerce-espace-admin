@@ -25,6 +25,7 @@ const Login = () => {
 
       if (res.data.status == "success") {
         navigate("/");
+        window.location.reload();
       } else {
         Swal.fire({
           icon: "error",
