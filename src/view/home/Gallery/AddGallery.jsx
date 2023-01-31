@@ -8,14 +8,16 @@ const AddGallery = () => {
   const [file, setFile] = useState({});
   const navigate = useNavigate();
   const [Products, setProducts] = useState([]);
-  const [prod, setProd] = useState({});
+  const [prod, setProd] = useState("");
 
   const onChangeHandlerProd = (e) => {
 
 
     console.log({[e.target.name]: e.target.value,})
     
-    setProd({[e.target.name]: {_id:e.target.value},});
+    console.log(e.target.value)
+    setProd(e.target.value);
+    console.log('prod',prod)
   };
 
   const getAll = () => {
@@ -48,13 +50,13 @@ const AddGallery = () => {
 
    
    
-    formData.append('product',Data.product);
+    formData.append('product',prod);
     formData.append('file',file);
 
     GalleryService.create(formData)
       .then((res) => {
         console.log(res);
-        navigate("/gallery-list");
+       {/*} navigate("/gallery-list");*/}
       })
       .catch((err) => {
         console.log(err);

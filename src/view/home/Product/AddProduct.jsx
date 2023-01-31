@@ -11,9 +11,9 @@ const AddProduct = () => {
   const [Categories, setCategories] = useState();
   const [cat, setCat] = useState({});
   const [Subcategories, setSubcategories] = useState([]);
-const [sub,setSub]=useState({});
+const [sub,setSub]=useState("");
 const [Providers, setProviders] = useState([]);
-const [Prov,setProv]=useState({});
+const [Prov,setProv]=useState("");
  
 
 
@@ -31,21 +31,27 @@ const [Prov,setProv]=useState({});
 
     console.log({[e.target.name]: e.target.value,})
     
-    setCat({[e.target.name]: {_id:e.target.value},});
+    setCat(e.target.value);
+    console.log(e.target.value);
+    console.log('cat:',cat)
   };
   const onChangeHandlerSub = (e) => {
 
 
     console.log({[e.target.name]: e.target.value,})
-    
-    setSub({[e.target.name]: {_id:e.target.value},});
+
+    console.log(e.target.value)
+    setSub(e.target.value);
+    console.log('sub:',sub)
   };
   const onChangeHandlerProv = (e) => {
 
 
     console.log({[e.target.name]: e.target.value,})
     
-    setProv({[e.target.name]: {_id:e.target.value},});
+    setProv(e.target.value);
+    console.log(e.target.value._id)
+    console.log('prov:',Prov)
   };
   const getAll = () => {
     CategoryService.getAll()
@@ -86,7 +92,7 @@ const [Prov,setProv]=useState({});
  
 
   const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
+    setFile(event.target.files);
   };
 
  
@@ -98,25 +104,26 @@ const [Prov,setProv]=useState({});
 
     console.log(files);
     const formData = new FormData();
-   {/* for(let i=0;i<files.length;i++){
-      formData.append(`files-${i}`, files[i]);
-    }*/}
+    for(let i=0;i<files.length;i++){
+      formData.append(`files`, files[i]);
+    }
    {/* files.forEach((files, i) => {
       FormData.append(`files-${i}`, files);
     });*/}
-    formData.append('files',files)
-    Data.category = cat.category;
-    formData.append("category", Data.category);
-    Data.subcategory = sub.subcategory;
-  formData.append("subcategory", Data.subcategory);
-  Data.provider=Prov.provider;
-  formData.append("provider",Data.provider)
+    {/*formData.append('files[]',files)*/}
+    {/*Data.category = cat.category;*/}
+    formData.append("category", cat);
+    {/*Data.subcategory = sub.subcategory;*/}
+  formData.append("subcategory", sub);
+  {/*Data.provider=Prov.provider;*/}
+  formData.append("provider",Prov)
 
 
     formData.append("ref", Data.ref);
     formData.append("price", Data.price);
     formData.append("qte", Data.qte);
     formData.append("description", Data.description);
+    formData.append("name",Data.name);
   
 
     ProductService.create(formData)
@@ -148,6 +155,18 @@ const [Prov,setProv]=useState({});
                         className="form-control"
                         placeholder="Reference"
                         name="ref"
+                        onChange={onChangeHandler}
+                      />
+                    </div>
+                  </div>
+                  <div className="mb-3 row">
+                    <label className="col-sm-3 col-form-label">Name</label>
+                    <div className="col-sm-9">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="name"
+                        name="name"
                         onChange={onChangeHandler}
                       />
                     </div>

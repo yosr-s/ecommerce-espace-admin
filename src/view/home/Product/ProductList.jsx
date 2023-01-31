@@ -59,6 +59,7 @@ const onDelete = (id) => {
               <th scope="col">Ref</th>
               <th scope="col">Price</th>
               <th scope="col">Description</th>
+              <th scope="col">name</th>
               <th scope="col">Photo</th>
               <th scope="col">Action</th>
              
@@ -72,6 +73,7 @@ const onDelete = (id) => {
               <td>{item.ref}</td>
               <td>{item.price}</td>
               <td>{item.description}</td>
+              <td>{item.name}</td>
               <td> {item.galleries?.map((i)=>{
                  return <> <img style={{width:"100px"}} src={"http://localhost:3000/file/"+i.url_photo}></img></>
                   })}</td>

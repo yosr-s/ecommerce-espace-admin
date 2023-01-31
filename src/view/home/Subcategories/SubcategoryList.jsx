@@ -69,7 +69,7 @@ const SubcategoryList = () => {
               <td>{index}</td>
               <td>{item.name}</td>
               <td>{item.description}</td>
-              <td>{/*{item.category.name}*/}</td> 
+              <td>{item.category.name}</td> 
               <td><span class="d-flex justify-content-end">
                      <Link to={`/update-subcategory/${item._id}`} class="me-2 btn btn-primary shadow btn-xs sharp" data-bs-toggle="tooltip"
                     data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i> </Link>
