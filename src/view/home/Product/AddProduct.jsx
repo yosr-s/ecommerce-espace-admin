@@ -9,7 +9,7 @@ const AddProduct = () => {
   const [Data, setData] = useState({});
   const [files, setFile] = useState({});
   const [Categories, setCategories] = useState();
-  const [cat, setCat] = useState({});
+  const [cat, setCat] = useState("");
   const [Subcategories, setSubcategories] = useState([]);
 const [sub,setSub]=useState("");
 const [Providers, setProviders] = useState([]);
@@ -26,7 +26,7 @@ const [Prov,setProv]=useState("");
       [e.target.name]: e.target.value,
     });
   };
-  const onChangeHandlerCat = (e) => {
+ {/*} const onChangeHandlerCat = (e) => {
 
 
     console.log({[e.target.name]: e.target.value,})
@@ -34,7 +34,16 @@ const [Prov,setProv]=useState("");
     setCat(e.target.value);
     console.log(e.target.value);
     console.log('cat:',cat)
+  };*/}
+  const onChangeHandlerCat = (e) => {
+
+
+    console.log({[e.target.name]: e.target.value,})
+    
+    setCat(e.target.value);
+    console.log('cat:',cat)
   };
+
   const onChangeHandlerSub = (e) => {
 
 
@@ -104,18 +113,16 @@ const [Prov,setProv]=useState("");
 
     console.log(files);
     const formData = new FormData();
+
     for(let i=0;i<files.length;i++){
       formData.append(`files`, files[i]);
     }
-   {/* files.forEach((files, i) => {
-      FormData.append(`files-${i}`, files);
-    });*/}
-    {/*formData.append('files[]',files)*/}
-    {/*Data.category = cat.category;*/}
-    formData.append("category", cat);
-    {/*Data.subcategory = sub.subcategory;*/}
+  
+    
+
+   formData.append('category',cat)
+   
   formData.append("subcategory", sub);
-  {/*Data.provider=Prov.provider;*/}
   formData.append("provider",Prov)
 
 

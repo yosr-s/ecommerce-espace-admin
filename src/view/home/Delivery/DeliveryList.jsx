@@ -77,7 +77,7 @@ const onDelete = (id) => {
               <td>{item.orders?.map((i)=>{
                 return <tr>{i.contenu}</tr>
                })}</td>
-              <td> <> <img style={{width:"100px"}} src={"http://localhost:3000/file/"+item.photo}></img></></td>
+              <td> <> <img style={{width:"100px"}} src={item.photo? "http://localhost:3000/file/"+item.photo:"images/avatar/no_image.png"}></img></></td>
               <td><span class="d-flex justify-content-end">
                      <Link to={`/update-delivery/${item._id}`} class="me-2 btn btn-primary shadow btn-xs sharp" data-bs-toggle="tooltip"
                     data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i> </Link>

@@ -22,9 +22,9 @@ const Login = () => {
       localStorage.setItem("user", res.data.data.user.name);
       localStorage.setItem("user_email", res.data.data.user.email);
       localStorage.setItem("token", res.data.data.token);
-      localStorage.setItem("refreshtoken", res.data.data.refreshtoken);
+      localStorage.setItem("refreshToken", res.data.data.refreshtoken);
 
-      if (res.data.status == "success") {
+      if ((res.data.status == "success") && (res.data.data.user.itemtype == "Admin")) {
         navigate("/");
         window.location.reload();
       } else {
@@ -79,7 +79,7 @@ const Login = () => {
                  
                  
                   <div className="text-center">
-                    <span className>Do not have account Yet?<a href="javascript:void(0);" className="text-primary font-w500">Try for free!</a></span>	
+                    <span className >Do not have account Yet?<a href="javascript:void(0);" className="text-primary font-w500">Try for free!</a></span>	
                   </div>
                 </div>
               </div>

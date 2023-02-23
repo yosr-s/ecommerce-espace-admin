@@ -72,7 +72,7 @@ const onDelete = (id) => {
               <td>{index}</td>
               <td><> <img style={{width:"100px"}} src={"http://localhost:3000/file/"+item.url_photo}></img></></td>
              
-              <td>{/*} {item.product._id}*/}</td>
+              <td>{item.product.name}</td>
               <td><span class="d-flex justify-content-end">
                      <Link to={`/update-gallery/${item._id}`} class="me-2 btn btn-primary shadow btn-xs sharp" data-bs-toggle="tooltip"
                     data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i> </Link>

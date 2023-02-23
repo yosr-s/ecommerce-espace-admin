@@ -58,6 +58,8 @@ const SubcategoryList = () => {
               <th scope="col">Name</th>
               <th scope="col">Description</th>
               <th scope="col">Category</th>
+              <th scope="col">Products</th>
+
               
               <th scope="col">Action</th>
             </tr>
@@ -70,6 +72,10 @@ const SubcategoryList = () => {
               <td>{item.name}</td>
               <td>{item.description}</td>
               <td>{item.category.name}</td> 
+              <td>{item.products?.map((i)=>{
+                return <tr>{i.name}</tr>
+               })}</td>
+
               <td><span class="d-flex justify-content-end">
                      <Link to={`/update-subcategory/${item._id}`} class="me-2 btn btn-primary shadow btn-xs sharp" data-bs-toggle="tooltip"
                     data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i> </Link>

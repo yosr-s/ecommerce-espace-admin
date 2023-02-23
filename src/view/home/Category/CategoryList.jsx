@@ -59,6 +59,8 @@ const onDelete = (id) => {
 
               <th scope="col">Description</th>
               <th scope="col">Subcategories</th>
+              <th scope="col">Products</th>
+
               
               <th scope="col">Action</th>
             </tr>
@@ -74,6 +76,9 @@ const onDelete = (id) => {
               <td>{item.subcategories?.map((i)=>{
                   return <tr>{i.name}</tr>})}
               </td>
+              <td>{item.products?.map((i)=>{
+                return <tr>{i.name}</tr>
+               })}</td>
               <td><span class="d-flex justify-content-end">
                      <Link to={`/update-category/${item._id}`} class="me-2 btn btn-primary shadow btn-xs sharp" data-bs-toggle="tooltip"
                     data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i> </Link>
